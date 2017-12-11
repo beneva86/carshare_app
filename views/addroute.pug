@@ -1,0 +1,48 @@
+extends layout
+
+block content
+	if (user.status !== 'driver')
+		h3 You have to log in as a driver to add a route
+	else if (user.status === 'driver')
+		h3#title Add your route to Schiphol
+		form(action='/addroute' method='post')
+			label(for='flightnumber') Flight number
+			input#fname(type='text', name='flightnumber', placeholder='Flight number' required)
+			br
+			label(for='departcity') City of car departure
+			input#fname(type='text', name='departcity', placeholder='City of departure' required)
+			br
+			label(for='departuredate') Date of departure
+			input#fname(type='date', name='departuredate', placeholder='Date of departure' required)
+			br
+			label(for='departuretime') Time of departure
+			input#fname(type='time', name='departuretime', placeholder='Time of departure' required)
+			br
+			label(for='pickuppoints') Pick up points
+			input#fname(type='text', name='pickuppoint1', placeholder='Possible city for pick up')
+			br
+			input#fname(type='text', name='pickuppoint2', placeholder='Possible city for pick up')
+			br
+			input#fname(type='text', name='pickuppoint3', placeholder='Possible city for pick up')
+			br
+			label(for='availableseats') Number of available seats
+			input#fname(type='number', name='availableseats', placeholder='Available seats' required)
+			br
+			label(for='carregistration') Car registration number
+			input#fname(type='text', name='carregistration', placeholder='Car registration' required)
+			br
+			br
+			label Please confirm your route
+			input#confirm(type='checkbox', name='confirmroute')
+			p#confirm-feedback
+			br
+			br
+			button#submit(type='submit') Submit your route
+	//- script(src='https://code.jquery.com/jquery-1.10.2.js')
+	//- script.
+	//- 	$('#submit').click(function(){
+	//- 	if($('#confirm:checked').val() === undefined) {
+	//- 		$('#confirm-feedback').html(`<p style='color:red'> Are you sure? </p>`)
+	//- 	}
+	//- 	})
+

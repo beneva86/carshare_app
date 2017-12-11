@@ -1,0 +1,33 @@
+extends layout
+
+block content
+	if (user.status !== 'passenger')
+		h3 You have to log in as a passenger to search a route
+	else if (user.status === 'passenger')
+		h3#title Search for matching route
+		form#searchform(action='/searchresults' method='get' data-matchroutes=matchRoutes)
+			label(for='flightnumber') Flight number
+			input(type='text', name='flightnumber', placeholder='Flight number' required)
+			br
+			label(for='departuredate') Date of departure
+			input(type='date', name='departuredate', placeholder='Date of departure' required)
+			br
+			label(for='departuretime') Time of departure
+			input(type='time', name='departuretime', placeholder='Time of departure' required)
+			br
+			label(for='pickuppoints') Pick up points
+			input(type='text', name='pickuppoint1', placeholder='Possible city for pick up')
+			br
+			input(type='text', name='pickuppoint2', placeholder='Possible city for pick up')
+			br
+			input(type='text', name='pickuppoint3', placeholder='Possible city for pick up')
+			br
+			label(for='requiredseats') Number of required seats
+			input(type='number', name='requiredseats', placeholder='Required seats' required)
+			br
+			br
+			button#submit(type='submit') See results
+		br
+		br
+		if message_nomatch
+			h3=message_nomatch

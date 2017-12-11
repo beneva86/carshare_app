@@ -1,0 +1,35 @@
+extends layout
+
+block content
+	h3#title Here are your route details:
+	.container
+		.details1(style='border-right:0px')
+			p <b>Date:</b> #{routedetails.date.replace(/-/g, '.')}
+			p <b>Departure:</b> #{routedetails.time}
+			p#cities #{routedetails.depart_city} 
+			if routedetails.pickup_point1
+				p#line |
+				p#cities #{routedetails.pickup_point1} 
+			if routedetails.pickup_point2
+				p#line |
+				p#cities #{routedetails.pickup_point2}
+			if routedetails.pickup_point3
+				p#line |
+				p#cities #{routedetails.pickup_point3} 
+			p#line |
+			p#cities Schiphol Airport
+		.details1(style='border-right:0px; border-left:0px')
+				p <b> Available seats: </b> #{routedetails.available_seats}
+		if (user.status !== 'driver')
+			.details1(style='border-right:0px; border-left:0px')
+				p <b> Available seats </b> #{routedetails.available_seats}
+			.details1(style='border-right:0px; border-left:0px')
+				p <b>Driver:</b> #{routedetails.driver.username}
+				p <b>Points:</b> 4.8 / 5
+			.details1(style='border-left:0px')
+				p <b>Contact</b>
+				p <b>Driver's name:</b> #{routedetails.driver.firstname} #{routedetails.driver.lastname}
+				p <b>Phone number:</b> #{routedetails.driver.phone_number}
+
+
+	

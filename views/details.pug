@@ -1,0 +1,50 @@
+extends layout
+
+block content
+	h1#title(data-matchroutes=matchRoutes, data-seats=requiredseats, data-pickuppoints= pickuppoints) We found #{matchRoutes.length} route(s) for you
+	//- h3= JSON.stringify(matchRoutes)
+	
+	ol#details-list(style='list-style: decimal inside')
+		each route in matchRoutes
+			li.list-group-item(data-route=route) Route
+				p
+					span #{route.time} 
+					span #{route.depart_city} - Schiphol Airport 
+					span #{route.available_seats} seat(s)
+					span Driver: #{route.driver.username}
+					//- a(href='/reservation')
+					button.book-button(data-route=route, style='float:right; width:60px;height:30px') Book
+					button.details-button.see-details(data-routeid=route.id, data-route=route, style='float:right; width:60px;height:30px') Details
+				.hidden(id=route.id+1)
+					p Details:
+						.content
+							img.start-endpoint(src='/images/start_icon.png')
+							p #{route.time} 
+								span #{route.depart_city}
+								span#price 70 €
+						if route.pickup_point1
+							.content
+								img.pickuppoint(src='/images/pickup_icon.png')
+								p(id=route.id+'pickup1')
+									span #{route.pickup_point1}
+									span#price 50 €
+						if route.pickup_point2
+							.content
+								img.pickuppoint(src='/images/pickup_icon.png')
+								p(id=route.id+'pickup2')
+									span #{route.pickup_point2}
+									span#price 30 €
+						if route.pickup_point3
+							.content
+								img.pickuppoint(src='/images/pickup_icon.png')
+								p(id=route.id+'pickup3')
+									span #{route.pickup_point3}
+									span#price 15 €
+						.content
+							img.start-endpoint(src='/images/end_icon.png')
+							p(id=route.id+'endpoint')
+								span Schiphol Airport
+	script(src="/js/showdetails.js")
+
+
+
