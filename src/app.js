@@ -7,6 +7,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+
 const Op = Sequelize.Op;
 // const connection = new Sequelize('carshare_app',process.env.POSTGRES_USER,null,{ operatorsAliases: false });
 
